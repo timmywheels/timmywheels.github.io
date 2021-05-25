@@ -1,26 +1,35 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import combineReducers from "./reducers";
+import appReducer from "./reducers/appReducer";
+import AppContext from "./context/AppContext";
+import AppLayout from "./components/layout/AppLayout";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const initialAppState = {}
+
+const App = () => {
+
+    const [state, dispatch] = React.useReducer(
+        combineReducers({
+            app: appReducer
+        }),
+        {
+            app: initialAppState
+        },
+    )
+
+
+    return (
+        <AppContext.Provider>
+            <Router>
+                <Switch>
+                    <AppLayout>
+                        <Route path={'/'} component={}>
+                    </AppLayout>
+                </Switch>
+            </Router>
+        </AppContext.Provider>
+    );
 }
 
 export default App;
