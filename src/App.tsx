@@ -4,6 +4,7 @@ import combineReducers from "./reducers";
 import appReducer from "./reducers/appReducer";
 import AppContext from "./context/AppContext";
 import AppLayout from "./components/layout/AppLayout";
+import Main from "./components/Main";
 
 const initialAppState = {}
 
@@ -24,7 +25,7 @@ const App = () => {
             <Router>
                 <Switch>
                     <AppLayout>
-                        <Route path={'/'} component={}>
+                        <Route path={'/'} component={Main}/>
                     </AppLayout>
                 </Switch>
             </Router>
